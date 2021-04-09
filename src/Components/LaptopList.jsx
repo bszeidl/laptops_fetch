@@ -6,6 +6,8 @@ const LaptopList = () => {
 
 	const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+	const [search, setSearch] = useState('')
+	const [filteredLaptops, setFilteredLaptops] = useState(true)
 
   useEffect(() => {
     fetch("/api/laptop")
@@ -26,22 +28,34 @@ const LaptopList = () => {
 
 	console.log(data);
 
+	const filterText = (event) => {
+		setSearch(event.target.value);
+		
+	}
+
+		//szabdszavas kereső
+	useEffect(() => 
+		setFilteredLaptops(data.filter((laptop) =>
+				{return laptop.name.toLowerCase().includes(search.toLowerCase()) ||
+					laptop.brand.toLowerCase().includes(search.toLowerCase())					
+			? laptop : false}
+		)), [search, data])
 
 	return (
 
 		<div>
 			<label>Keresés</label>
-			<input type="text"/>
+			<input type="text" onChange={filterText}/>
 			
 		<div className="laptoplist-container">
 			{
 				isLoaded ?
-				data.map((laptop) => 
+				filteredLaptops.map((laptop) => 
 					<Laptop
 						key={`id-${laptop.brand}-${laptop.weight}`}
 						brand={laptop.brand}
 						name={laptop.name}
-						weight={laptop.weight}				
+						weigth={laptop.weigth}				
 					/>)
 
 				:

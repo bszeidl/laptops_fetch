@@ -7,7 +7,7 @@ const Laptop = (props) => {
 			<div>{props.name}</div>
 			<button>Show more</button>
 			<div>{props.brand}</div>
-			<div>{props.weight}</div>
+			<div>{props.weigth}</div>
 		</div>
 	)
 };
