@@ -8,7 +8,7 @@ const LaptopList = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch("/api/laptop")
       .then((res) => res.json())
       .then((result) => {setData(result);
 					
