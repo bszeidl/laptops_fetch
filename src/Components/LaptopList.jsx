@@ -30,6 +30,8 @@ const LaptopList = () => {
 	return (
 
 		<div>
+			<label>Keresés</label>
+			<input type="text"/>
 			
 		<div className="laptoplist-container">
 			{
