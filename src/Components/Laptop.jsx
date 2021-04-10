@@ -4,17 +4,29 @@ import React, {useState} from 'react';
 const Laptop = (props) => {
 
 	const [showMore, setShowMore] = useState(false);
-	const [buttonState, setButtonState] = useState('Show more');
+	const [buttonState, setButtonState] = useState('show more');
 
-	
+	/*const showMoreShowLess = () => {
+		if (!showMore) {
+			setShowMore(true);
+			setButtonState('show less');
+		} else {
+			setShowMore(false);
+			setButtonState('show more')
+		}
+	}*/
 
 	return (
 		<div className="laptop-container">
-			<div>{props.name}</div>
-			<button onClick={() => {setShowMore(true); setButtonState('Show less');}}>{buttonState}</button>
+			<p className="laptop-detail">modell: <span className="laptop-modell">{props.name}</span></p>
+			<button className="laptop-detail" onClick={() => {
+				return !showMore ? (setShowMore(true) + setButtonState('show less')) 
+				: 
+				(setShowMore(false) + setButtonState('show more')) 
+			}}>{buttonState}</button>
 
-				{showMore ? <div>{props.brand}</div> : false}
-				{showMore ? <div>{props.weigth}</div> : false}
+			{showMore && <div><p className="laptop-detail laptop-brand">brand: {props.brand}</p><p className="laptop-detail">weight: {props.weigth} kg</p></div>}
+				
 
 		</div>
 	)
@@ -22,4 +34,3 @@ const Laptop = (props) => {
 
 export default Laptop;
 
-/*	<button onClick={() => {setShowMore(true); setButtonState('Show less');}}>{buttonState}</button> */

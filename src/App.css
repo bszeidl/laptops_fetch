@@ -1,1 +1,84 @@
-/* No CSS *//*# sourceMappingURL=App.css.map */
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.App {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 30px;
+}
+
+.App h1 {
+  margin: 20px;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header input {
+  margin: 20px 0;
+}
+
+.laptop-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 250px;
+  /*height: 120px;*/
+  margin: 20px 0;
+  padding: 10px;
+  background-color: silver;
+  border-radius: 5px;
+}
+
+.laptop-container button {
+  width: 100px;
+}
+
+.laptop-container .laptop-detail {
+  margin: 5px;
+}
+
+.laptop-modell {
+  font-weight: 800;
+}
+
+.laptop-brand {
+  font-style: italic;
+}
+/*# sourceMappingURL=App.css.map */

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import LoadingMask from './LoadingMask';
 import Laptop from './Laptop';
+import SortButton from './SortButton';
 
-const LaptopList = () => {
+
+const LaptopList = (props) => {
 
 	const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -26,12 +28,11 @@ const LaptopList = () => {
       );
   }, []);
 
-	console.log(data);
+	/*console.log(data);*/
 
-	const filterText = (event) => {
-		setSearch(event.target.value);
-		
-	}
+	/*const filterText = (event) => {
+		setSearch(event.target.value);		
+	}*/
 
 		//szabdszavas kereső
 	useEffect(() => 
@@ -44,8 +45,10 @@ const LaptopList = () => {
 	return (
 
 		<div>
-			<label>Keresés</label>
-			<input type="text" onChange={filterText}/>
+			<header>				
+				<input type="text" placeholder="keresés" onChange={(event) => {setSearch(event.target.value)}}/>
+				<SortButton />
+			</header>
 			
 		<div className="laptoplist-container">
 			{
@@ -59,7 +62,7 @@ const LaptopList = () => {
 					/>)
 
 				:
-				
+
 				<LoadingMask />
 			}
 
