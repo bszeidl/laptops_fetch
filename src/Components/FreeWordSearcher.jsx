@@ -10,7 +10,7 @@ const FreeWordSearcher = ({data, sortedData, setFilteredLaptops}) => {
 		useEffect(() => 	
 
 		setFilteredLaptops(data.filter((laptop) =>
-				{return laptop.name.includes(search) ||
+				{return laptop.name.toLowerCase().includes(search.toLowerCase()) ||
 					laptop.brand.toLowerCase().includes(search.toLowerCase())					
 			? laptop : false}
 		)), [search, data, setFilteredLaptops])
