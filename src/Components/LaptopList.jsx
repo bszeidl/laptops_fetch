@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import LoadingMask from './LoadingMask';
 import Laptop from './Laptop';
 import SortButton from './SortButton';
+import FreeWordSearcher from './FreeWordSearcher';
 
 
 const LaptopList = (props) => {
 
 	const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-	const [search, setSearch] = useState('')
+	/*const [search, setSearch] = useState('')*/
 	const [filteredLaptops, setFilteredLaptops] = useState(true)
 
   useEffect(() => {
@@ -35,18 +36,18 @@ const LaptopList = (props) => {
 	}*/
 
 		//szabdszavas kereső
-	useEffect(() => 
+	/*useEffect(() => 
 		setFilteredLaptops(data.filter((laptop) =>
 				{return laptop.name.toLowerCase().includes(search.toLowerCase()) ||
 					laptop.brand.toLowerCase().includes(search.toLowerCase())					
 			? laptop : false}
-		)), [search, data])
+		)), [search, data])*/
 
 	return (
 
 		<div>
 			<header>				
-				<input type="text" placeholder="keresés" onChange={(event) => {setSearch(event.target.value)}}/>
+				<FreeWordSearcher data={data} setFilteredLaptops={setFilteredLaptops}/>
 				<SortButton />
 			</header>
 			

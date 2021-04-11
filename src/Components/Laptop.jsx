@@ -25,7 +25,7 @@ const Laptop = (props) => {
 				(setShowMore(false) + setButtonState('show more')) 
 			}}>{buttonState}</button>
 
-			{showMore && <div><p className="laptop-detail laptop-brand">brand: {props.brand}</p><p className="laptop-detail">weight: {props.weigth} kg</p></div>}
+			{showMore && <div><p className="laptop-detail">brand: <span className="laptop-brand">{props.brand}</span></p><p className="laptop-detail">weight: {props.weigth} kg</p></div>}
 				
 
 		</div>
