@@ -10,7 +10,8 @@ const LaptopList = (props) => {
 	const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 	/*const [search, setSearch] = useState('')*/
-	const [filteredLaptops, setFilteredLaptops] = useState(true)
+	const [filteredLaptops, setFilteredLaptops] = useState(true);
+	
 
   useEffect(() => {
     fetch("/api/laptop")
@@ -43,12 +44,16 @@ const LaptopList = (props) => {
 			? laptop : false}
 		)), [search, data])*/
 
+		
+
+		
+
 	return (
 
 		<div>
 			<header>				
 				<FreeWordSearcher data={data} setFilteredLaptops={setFilteredLaptops}/>
-				<SortButton />
+				<SortButton filteredLaptops={filteredLaptops} setFilteredLaptops={setFilteredLaptops}/>
 			</header>
 			
 		<div className="laptoplist-container">

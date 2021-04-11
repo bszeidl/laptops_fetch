@@ -15,9 +15,12 @@ export function makeServer({ environment = 'development' } = {}) {
           { brand: "Apple", name: "MacBook Air", weigth: 0.5 },
           { brand: "Asus", name: "P30", weigth: 1.7 },
           { brand: "Lenovo", name: "A50", weigth: 1.5 },
+          { brand: "Acer", name: "X80", weigth: 1.9 }
         ]
       })
     },
   });
   return server;
 }
+
+
