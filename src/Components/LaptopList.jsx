@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import LoadingMask from './LoadingMask';
 import Laptop from './Laptop';
-import SortButton from './SortButton';
-import FreeWordSearcher from './FreeWordSearcher';
+/*import FreeWordSearcher from './FreeWordSearcher';*/
 
 
-const LaptopList = (props) => {
+const LaptopList = () => {
 
 	const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-	/*const [search, setSearch] = useState('')*/
-	const [filteredLaptops, setFilteredLaptops] = useState(true);
-	
+	/*const [search, setSearch] = useState('');*/
+	/*const [filteredLaptops, setFilteredLaptops] = useState([]);*/
+
+
+	console.log(data);
 
   useEffect(() => {
     fetch("/api/laptop")
@@ -30,42 +31,68 @@ const LaptopList = (props) => {
       );
   }, []);
 
-	/*console.log(data);*/
 
-	/*const filterText = (event) => {
-		setSearch(event.target.value);		
-	}*/
 
 		//szabdszavas kereső
-	/*useEffect(() => 
+		/*useEffect(() => 
 		setFilteredLaptops(data.filter((laptop) =>
 				{return laptop.name.toLowerCase().includes(search.toLowerCase()) ||
-					laptop.brand.toLowerCase().includes(search.toLowerCase())					
+					laptop.brand.toLowerCase().includes(search.toLowerCase())	||
+					laptop.weigth.toString().includes(search)				
 			? laptop : false}
 		)), [search, data])*/
-
 		
+		/*console.log(search);*/
 
-		
+		/*const freeWordSearcher = () => {
+			setFilteredLaptops(data.filter((laptop) =>
+			{return laptop.name.toLowerCase().includes(search.toLowerCase()) ||
+				laptop.brand.toLowerCase().includes(search.toLowerCase())	||
+				laptop.weigth.toString().includes(search)				
+			? laptop : false}
+		}*/
+	
 
 	return (
 
 		<div>
-			<header>				
-				<FreeWordSearcher data={data} setFilteredLaptops={setFilteredLaptops}/>
-				<SortButton filteredLaptops={filteredLaptops} setFilteredLaptops={setFilteredLaptops}/>
+			<header>
+
+				{/*<input type="text" placeholder="keresés" onChange={(event) => (
+					setSearch(event.target.value)
+				
+				)}/>*/}
+
+				<button onClick={() => setData(
+					data.sort((a, b) =>  b.weigth - a.weigth))}>sort by weight
+				</button>
+
+				<button onClick={() => setData(
+					data.sort((a, b) => (a.name > b.name) - (a.name < b.name)))}>sort by name
+				</button>
+
 			</header>
 			
 		<div className="laptoplist-container">
 			{
-				isLoaded ?
+				/*isLoaded && filteredLaptops.length ?
 				filteredLaptops.map((laptop) => 
 					<Laptop
 						key={`id-${laptop.brand}-${laptop.weight}`}
 						brand={laptop.brand}
 						name={laptop.name}
 						weigth={laptop.weigth}				
-					/>)
+				/>)*/
+
+				isLoaded ?
+
+				data.map((laptop) => 
+				<Laptop
+					key={`id-${laptop.brand}-${laptop.weight}`}
+					brand={laptop.brand}
+					name={laptop.name}
+					weigth={laptop.weigth}				
+				/>)
 
 				:
 
@@ -81,3 +108,9 @@ const LaptopList = (props) => {
 }
 
 export default LaptopList;
+
+
+/*
+<FreeWordSearcher data={data} setFilteredLaptops={setFilteredLaptops}/>
+import SortButton from './SortButton';
+<SortButton filteredLaptops={filteredLaptops} setFilteredLaptops={setFilteredLaptops}/>*/

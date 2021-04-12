@@ -1,20 +1,18 @@
 import React from 'react';
 
-const SortButton = (props) => {
-
-		
+const SortButton = ({filteredLaptops, setFilteredLaptops}) => {		
 
 	const laptopWeightSorter = () => {
-		props.setFilteredLaptops(props.filteredLaptops.sort((a, b) => {return b.weigth - a.weigth}));
-		console.log(props.filteredLaptops);
+		setFilteredLaptops(filteredLaptops.sort((a, b) => {return b.weigth - a.weigth}));
+		
 	}
 
 	const laptopNameSorter = () => {
-		props.setFilteredLaptops(props.filteredLaptops.sort((a, b) => {return (a.name > b.name) - (a.name < b.name)}));
-		console.log(props.filteredLaptops);
+		setFilteredLaptops(filteredLaptops.sort((a, b) => {return (a.name > b.name) - (a.name < b.name)}));
+		
 	}
 
-	console.log(props.filteredLaptops);
+	/*console.log(props.filteredLaptops);*/
 
 	return (
 		<div>
