@@ -10,9 +10,15 @@ const LaptopList = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 	/*const [search, setSearch] = useState('');*/
 	/*const [filteredLaptops, setFilteredLaptops] = useState([]);*/
+	const [sortedWeight, setSortedWeight] = useState([]);
+	const [sortedName, setSortedName] = useState([]);
 
-
+	console.log('data');
 	console.log(data);
+	console.log('sortedWeight');
+	console.log(sortedWeight);
+	console.log('sortedName');
+	console.log(sortedName);
 
   useEffect(() => {
     fetch("/api/laptop")
@@ -22,15 +28,16 @@ const LaptopList = () => {
           setTimeout(() => {
             setIsLoaded(true);
           }, 2000);
-        },				
+      	},				
 
-        (error) => {
-          console.log(error);
-          setIsLoaded(true);
-        }
+      	(error) => {
+        	console.log(error);
+        	setIsLoaded(true);
+      	}
+
       );
+			
   }, []);
-
 
 
 		//szabdszavas kereső
@@ -63,12 +70,12 @@ const LaptopList = () => {
 				
 				)}/>*/}
 
-				<button onClick={() => setData(
+				<button onClick={() => setSortedWeight(
 					data.sort((a, b) =>  b.weigth - a.weigth))}>sort by weight
 				</button>
 
-				<button onClick={() => setData(
-					data.sort((a, b) => (a.name > b.name) - (a.name < b.name)))}>sort by name
+				<button onClick={() => setSortedName(
+					data.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0)))}>sort by name
 				</button>
 
 			</header>
@@ -84,9 +91,19 @@ const LaptopList = () => {
 						weigth={laptop.weigth}				
 				/>)*/
 
-				isLoaded ?
+				isLoaded  ?
 
-				data.map((laptop) => 
+				sortedWeight.map((laptop) => 
+				<Laptop
+					key={`id-${laptop.brand}-${laptop.weight}`}
+					brand={laptop.brand}
+					name={laptop.name}
+					weigth={laptop.weigth}				
+				/>)
+
+				||
+			
+				sortedName.map((laptop) => 
 				<Laptop
 					key={`id-${laptop.brand}-${laptop.weight}`}
 					brand={laptop.brand}
@@ -111,6 +128,7 @@ export default LaptopList;
 
 
 /*
+data.sort((a, b) => (a.name > b.name) - (a.name < b.name))
 <FreeWordSearcher data={data} setFilteredLaptops={setFilteredLaptops}/>
 import SortButton from './SortButton';
 <SortButton filteredLaptops={filteredLaptops} setFilteredLaptops={setFilteredLaptops}/>*/
