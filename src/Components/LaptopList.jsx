@@ -5,7 +5,7 @@ import SortButton from './SortButton';
 import FreeWordSearcher from './FreeWordSearcher';
 
 
-const LaptopList = (props) => {
+const LaptopList = () => {
 
 	const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -44,9 +44,7 @@ const LaptopList = (props) => {
 			? laptop : false}
 		)), [search, data])*/
 
-		
-
-		
+		console.log(filteredLaptops);
 
 	return (
 

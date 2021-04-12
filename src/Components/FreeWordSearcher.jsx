@@ -1,19 +1,19 @@
 import React, {useState, useEffect} from 'react';
 
-const FreeWordSearcher = ({data, sortedData, setFilteredLaptops}) => {
+const FreeWordSearcher = ({data, setFilteredLaptops, filteredLaptops}) => {
 
 	const [search, setSearch] = useState('')
-		//szabdszavas kereső
+		
+	//szabdszavas kereső
 
-		/*let examinedData = sortedData.length ? sortedData : data;*/
-	
 		useEffect(() => 	
 
 		setFilteredLaptops(data.filter((laptop) =>
 				{return laptop.name.toLowerCase().includes(search.toLowerCase()) ||
-					laptop.brand.toLowerCase().includes(search.toLowerCase())					
+					laptop.brand.toLowerCase().includes(search.toLowerCase()) ||
+					laptop.weigth.toString().includes(search)					
 			? laptop : false}
-		)), [search, data, setFilteredLaptops])
+		)), [search, data, setFilteredLaptops, filteredLaptops])
 
 	return (
 		<div>
