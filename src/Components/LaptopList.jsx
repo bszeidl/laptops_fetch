@@ -10,7 +10,7 @@ const LaptopList = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 	/*const [search, setSearch] = useState('');*/
 	/*const [filteredLaptops, setFilteredLaptops] = useState([]);*/
-	const [sortedData, setSortedData] = useState([]);
+	/*const [sortedData, setSortedData] = useState([]);*/
 	/*const [sortedName, setSortedName] = useState([]);*/
 	const [sortingCriteria, setSortingCriteria] = useState("unsorted");
 
@@ -18,19 +18,35 @@ const LaptopList = () => {
 	console.log(data);
 	console.log('sortingCriteria');
 	console.log(sortingCriteria);
-	console.log('sortedData');
-	console.log(sortedData);
+	/*console.log('sortedData');
+	console.log(sortedData);*/
 	
 	
 
   useEffect(() => {
     fetch("/api/laptop")
       .then((res) => res.json())
-      .then((result) => {setData(result);
+      .then((result) => {
+			
+			if (sortingCriteria === "unsorted") {
+				setData(result)
+			} else if (sortingCriteria === "lightToHeavy") {
+					result.sort((a, b) =>  {return (a.weigth - b.weigth)})
+			} else if (sortingCriteria === "heavyToLight") {
+					result.sort((a, b) =>  {return (b.weigth - a.weigth)})
+			} else if (sortingCriteria === "aToZ") {
+					result.sort((a, b) =>  {return (a.name > b.name) - (a.name < b.name)})
+			} else if (sortingCriteria === "zToA") {
+					result.sort((a, b) =>  {return (a.name < b.name)- (a.name > b.name)})
+			} else {
+				return false;
+			}	
+
+			setData(result);
 					
           setTimeout(() => {
             setIsLoaded(true);
-          }, 2000);
+          }, 10);
       	},				
 
       	(error) => {
@@ -40,7 +56,7 @@ const LaptopList = () => {
 
       );
 			
-  }, []);
+  }, [sortingCriteria]);
 
 
 		//szabdszavas kereső
@@ -64,7 +80,7 @@ const LaptopList = () => {
 
 		//sorrendbe rakás
 
-		useEffect(() => {
+		/*useEffect(() => {
 			if (sortingCriteria === "lightToHeavy") {
 				setSortedData(data.sort((a, b) =>  {return (b.weigth - a.weigth)}))
 			} else if (sortingCriteria === "heavyToLight") {
@@ -79,7 +95,25 @@ const LaptopList = () => {
 				return false;
 			}
 
-		}, [data, sortingCriteria]);
+		}, [data, sortingCriteria]);*/
+
+		/*const selectSorter = () => {
+			
+				if (sortingCriteria === "unsorted") {
+					setData(data)
+				} else if (sortingCriteria === "lightToHeavy") {
+					setSortedData(data.sort((a, b) =>  {return (b.weigth - a.weigth)}))
+				} else if (sortingCriteria === "heavyToLight") {
+					setSortedData(data.sort((a, b) =>  {return (a.weigth - b.weigth)}))
+				} else if (sortingCriteria === "aToZ") {
+					setSortedData(data.sort((a, b) =>  {return (a.name < b.name) - (a.name > b.name)}))
+				} else if (sortingCriteria === "zToA") {
+					setSortedData(data.sort((a, b) =>  {return (a.name > b.name) - (a.name < b.name)}))
+				} else {
+					return false;
+				}	
+
+		}*/
 	
 
 	return (
@@ -92,7 +126,7 @@ const LaptopList = () => {
 				)}/>*/}
 
 				<div>
-					<select onChange={(event) => {setSortingCriteria(event.target.value)}}>
+					<select onChange={(event) => setSortingCriteria(event.target.value)}>
 						<option value="unsorted">unsorted</option>
 						<option value="lightToHeavy">from light to heavy</option>
 						<option value="heavyToLight">from heavy to light</option>
@@ -107,7 +141,7 @@ const LaptopList = () => {
 		<div className="laptoplist-container">
 			{
 
-				isLoaded  && !sortedData.length ?
+				isLoaded   ?
 
 				data.map((laptop) => 
 				<Laptop
@@ -119,17 +153,6 @@ const LaptopList = () => {
 
 				:
 
-				isLoaded  && sortedData.length ?
-
-				sortedData.map((laptop) => 
-				<Laptop
-					key={`id-${laptop.brand}-${laptop.weight}`}
-					brand={laptop.brand}
-					name={laptop.name}
-					weigth={laptop.weigth}				
-				/>)
-
-				:
 
 				<LoadingMask />
 			}
@@ -147,6 +170,8 @@ export default LaptopList;
 
 /*
 
+
+<select onChange={(event) => {setSortingCriteria(event.target.value)}}>
 data.sort((a, b) => (a.name > b.name) - (a.name < b.name))
 <FreeWordSearcher data={data} setFilteredLaptops={setFilteredLaptops}/>
 import SortButton from './SortButton';

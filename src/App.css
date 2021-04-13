@@ -81,4 +81,9 @@ header input {
 .laptop-brand {
   font-style: italic;
 }
+
+.laptop-modell::first-letter {
+  display: inline-block;
+  font-size: 4.5em;
+}
 /*# sourceMappingURL=App.css.map */

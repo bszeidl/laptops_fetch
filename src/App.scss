@@ -32,8 +32,6 @@ header {
 
 }
 
-
-
 .laptop-container {
 	display: flex;
 	flex-direction: column;	
@@ -58,8 +56,13 @@ header {
 }
 
 
-
 .laptop-brand {
 	font-style: italic;
 }
+
+.laptop-modell::first-letter {
+	display: inline-block;
+	font-size: 4.5em;
+}
+
 
