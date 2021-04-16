@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LoadingMask from './LoadingMask';
 import Laptop from './Laptop';
 /*import FreeWordSearcher from './FreeWordSearcher';*/
+import {v4 as uuidv4} from 'uuid';
 
 
 const LaptopList = () => {
@@ -116,7 +117,7 @@ const LaptopList = () => {
 
 					sortedData.map((laptop) => 
 					<Laptop
-						key={`id-${laptop.brand}-${laptop.weight}`}
+						key={uuidv4()}
 						brand={laptop.brand}
 						name={laptop.name}
 						weigth={laptop.weigth}				
